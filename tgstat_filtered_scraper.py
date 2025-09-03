@@ -143,8 +143,8 @@ browser.quit()
 
 if channels:
     df = pd.DataFrame(channels)
-    df.to_excel('game.xlsx', index=False)
-    print(f"\nExported {len(channels)} channels to game.xlsx")
+    df.to_excel('TG_channels.xlsx', index=False)
+    print(f"\nExported {len(channels)} channels to TG_channels.xlsx")
     print("\nFirst 10 channels:")
     df_sorted = df.sort_values(by='subscribers', ascending=False)
     for i, (_, channel) in enumerate(df_sorted.head(10).iterrows()):
