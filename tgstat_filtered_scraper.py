@@ -35,6 +35,8 @@ channels = []
 unique_names = set()
 page = 1
 max_pages = 50 # Allow for more pages of filtered results
+# Remove the test limit for real run
+# max_channels = 10  # Limit for test run
 
 while page <= max_pages:
     print(f"Processing page {page} of filtered results...")
@@ -101,7 +103,7 @@ while page <= max_pages:
                     category = category_elem.text.strip()
             except Exception:
                 pass
-            
+
             channels.append({
                 'name': name,
                 'subscribers': subscribers,
@@ -110,6 +112,9 @@ while page <= max_pages:
             })
             unique_names.add(name)
             print(f"Added: {name} - {subscribers:,} subscribers - {telegram_link}")
+            # Remove the test limit break
+            # if len(channels) >= max_channels:
+            #     break
 
         except Exception as e:
             continue
@@ -138,8 +143,8 @@ browser.quit()
 
 if channels:
     df = pd.DataFrame(channels)
-    df.to_excel('RU_4.xlsx', index=False)
-    print(f"\nExported {len(channels)} channels to RU_4.xlsx")
+    df.to_excel('game.xlsx', index=False)
+    print(f"\nExported {len(channels)} channels to game.xlsx")
     print("\nFirst 10 channels:")
     df_sorted = df.sort_values(by='subscribers', ascending=False)
     for i, (_, channel) in enumerate(df_sorted.head(10).iterrows()):

@@ -2,7 +2,7 @@ import pandas as pd
 
 try:
     # Read the Excel file from the filtered scraper
-    df = pd.read_excel('tgstat_filtered_channels.xlsx')
+    df = pd.read_excel('game.xlsx')
 
     print(f"Total channels scraped: {len(df)}")
     
